@@ -1,0 +1,13 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<div>
+    <form class="form-horizontal" style="display: flex;
+    flex-direction: column;" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ category_form }}
+      <button type="submit" class="btn btn-primary" style="height:50px; width:200px;">Сохранить</button>
+    </form>
+</div>
+{% endblock %}

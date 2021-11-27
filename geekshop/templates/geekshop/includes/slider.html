@@ -24,7 +24,7 @@
                     {% endif %}
                     <li>
                         {% if user.is_authenticated %}
-                            <li><a class="dropdown-item" href="{% url 'orders:main' %}">Заказы</a>
+                            <li><a class="dropdown-item" href="{% url 'orders:orders_list' %}">Заказы</a>
                             </li>
                             <a href="{% url 'auth:logout' %}">выйти</a>
                         {% endif %}

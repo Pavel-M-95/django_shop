@@ -30,8 +30,6 @@ urlpatterns = [
     path('basket/', include('basketapp.urls', namespace='basket')),
     path('orders/', include('ordersapp.urls', namespace='orders')),
     path('admin_staff/', include('adminapp.urls', namespace='admin_staff')),
-
-
 ]
 
 if settings.DEBUG:

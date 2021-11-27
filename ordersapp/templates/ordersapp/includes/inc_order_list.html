@@ -1,29 +1,24 @@
-{% for item in object_list %}
-               {% if item.is_active %}
-               <tr>
-                   <td class="td1 orders_list">{{ item.pk }}</td>
-                   <td>{{ item.created|date:"Y-m-d H:i:s" }}</td>
-                   <td>{{ item.updated|date:"Y-m-d H:i:s" }}</td>
-                   <td>{{ item.get_status_display }}</td>
-                   <td>
-                       <a href="{% url 'ordersapp:order_read' item.pk %}">
-                           посмотреть
-                       </a>
-                   </td>
-                   <td>
-                       {% if item.status == 'FM' %}
-                         <a href="{% url 'ordersapp:order_update' item.pk %}">
-                           редактировать
-                         </a>
-                       {% endif %}
-                   </td>
-                   <td>
-                       {% if item.status == 'FM' %}
-                         <a href="{% url 'ordersapp:order_delete' item.pk %}">
-                             удалить
-                         </a>
-                       {% endif %}
-                   </td>
-               </tr>
-               {% endif %}
-           {% endfor %}
+{% if object.status == 'FM' %}
+<div class="container">
+    <div class="d-flex justify-content-around">
+       <button class="btn btn-warning btn-round form-control w-25 my-2 last">
+           <a href="{% url 'orders:order_forming_complete' object.pk %}">
+               совершить покупку
+           </a>
+       </button>
+       <button class="btn btn-warning btn-round form-control w-25 my-2 last">
+           <a href="{% url 'orders:order_delete' object.pk %}">удалить</a>
+       </button>
+    </div>
+</div>
+{% endif %}
+<div class="container">
+    <button class="btn btn-info btn-round form-control my-2 last">
+       <a href="{% url 'orders:orders_list' %}">
+           к списку заказов
+       </a>
+    </button>
+    <button class="btn btn-light btn-round form-control  my-2 last">
+       <a href="{% url 'main' %}">на главную</a>
+    </button>
+</div>

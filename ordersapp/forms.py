@@ -1,6 +1,5 @@
 from django import forms
-
-from ordersapp.models import Order
+from ordersapp.models import Order, OrderItem
 
 
 class OrderForm(forms.ModelForm):
@@ -15,14 +14,11 @@ class OrderForm(forms.ModelForm):
 
 
 class OrderItemForm(forms.ModelForm):
-    price = forms.CharField(
-        label='цена',
-        required=False
-    )
+    price = forms.CharField(label='цена', required=False)
 
     class Meta:
-        model = Order
-        exclude = ()
+        model = OrderItem
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super(OrderItemForm, self).__init__(*args, **kwargs)

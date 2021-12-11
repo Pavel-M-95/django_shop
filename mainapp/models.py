@@ -2,7 +2,6 @@ from django.db import models
 
 
 class ProductCategory(models.Model):
-
     name = models.CharField(
         max_length=64,
         verbose_name='имя',
@@ -31,14 +30,12 @@ class ProductCategory(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(
         ProductCategory,
-        on_delete=models.CASCADE,
-
+        on_delete=models.CASCADE
     )
 
     name = models.CharField(
         verbose_name='имя продукта',
         max_length=128,
-
     )
 
     image = models.ImageField(
@@ -49,24 +46,31 @@ class Product(models.Model):
     short_desc = models.CharField(
         verbose_name='краткое описание',
         max_length=60,
-        blank=True
+        blank=True,
     )
 
     description = models.TextField(
         verbose_name='описание продукта',
-        blank=True
-
+        blank=True,
     )
 
     price = models.DecimalField(
         max_digits=8,
         decimal_places=2,
-        verbose_name='Цена',
+        verbose_name='цена',
     )
 
     quantity = models.PositiveIntegerField(
         verbose_name='количество на складе',
         default=0
+    )
+
+    created = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    updated = models.DateTimeField(
+        auto_now=True
     )
 
     is_active = models.BooleanField(verbose_name='активна', default=True)
